@@ -45,18 +45,18 @@ class Password:
         return self.base_length
 
     @staticmethod
-    def create_password(input):
+    def create_password(pwd):
         safety = 0
-        base_length = len(input)
-        if any(c in string.ascii_letters for c in input):
+        base_length = len(pwd)
+        if any(c in string.ascii_letters for c in pwd):
             safety += 1
-        if any(c in string.digits for c in input):
+        if any(c in string.digits for c in pwd):
             safety += 1
-        if any(c in string.punctuation for c in input):
+        if any(c in string.punctuation for c in pwd):
             safety += 1
         password = Password(base_length, safety)
         password.status = passwordeval.PasswordEvaluator().evaluate(password)
-        password.set_password(input)
+        password.set_password(pwd)
         return password
 
 
