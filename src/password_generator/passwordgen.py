@@ -2,6 +2,13 @@ import passwordeval
 import secrets
 import string
 
+# @Todo
+#  Typ-Hints
+# saubere Struktur
+# Docstrings
+# vollständige Implementierung von PasswordEvaluator
+# kleine Logikbereinigungen
+
 class PasswordGen:
     def generate_password(self, base_length, safety):
 
