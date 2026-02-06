@@ -2,10 +2,6 @@ import passwordeval
 import secrets
 import string
 
-# @Todo
-#  Typ-Hints
-# Docstrings
-
 class PasswordGen:
     """Erzeugt zufällige Passwörter basierend auf Länge und Sicherheitsstufe."""
     def generate_password(self, base_length, safety):
