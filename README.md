@@ -16,7 +16,7 @@ Passwörter werden zufällig erzeugt und anhand von Länge sowie verwendeten Zei
   - `low security`
   - `medium security`
   - `high security`
-- Möglichkeit, benutzerdefinierte Passwörter zu evaluieren
+- Möglichkeit, benutzerdefinierte Passwörter zu evaluieren (basierend auf Sicherheitsstufen und Länge)
 
 ---
 
