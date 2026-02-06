@@ -4,12 +4,24 @@ import string
 
 # @Todo
 #  Typ-Hints
-# saubere Struktur
 # Docstrings
 
 class PasswordGen:
+    """Erzeugt zufällige Passwörter basierend auf Länge und Sicherheitsstufe."""
     def generate_password(self, base_length, safety):
-        """generiert basierend auf der angegebenen Länge und Sicherheit ein zufälliges pwd"""
+        """
+        Generiert ein zufälliges Passwort basierend auf der angegebenen
+        Basislänge und Sicherheitsstufe.
+
+        Sicherheitsstufen:
+        1 = nur Buchstaben
+        2 = Buchstaben und Ziffern
+        3 = Buchstaben, Ziffern und Sonderzeichen
+
+        :param base_length: Gewünschte Länge des Passworts
+        :param safety: Sicherheitsstufe (1–3)
+        :return: Generiertes Passwort als String oder None bei ungültigen Parametern
+        """
         if safety == 1 and base_length >= 1:
             password_chars = []
             chars = string.ascii_letters
@@ -37,10 +49,18 @@ class PasswordGen:
         return ''.join(password_chars)
 
 class Password:
+    """Repräsentiert ein Passwort inklusive Sicherheitsbewertung."""
     __passwordgen = PasswordGen()
     __evaluator = passwordeval.PasswordEvaluator()
 
     def __init__(self, base_length, safety):
+        """
+        Erstellt ein neues Password-Objekt und generiert automatisch
+        ein Passwort mit anschließender Bewertung.
+
+        :param base_length: Länge des Passworts
+        :param safety: Sicherheitsstufe (1–3)
+        """
         self.status = None
         self.base_length = base_length
         self.safety = safety
@@ -48,6 +68,10 @@ class Password:
         Password.__evaluator.evaluate(self)
 
     def new_password(self):
+        """
+        Generiert ein neues Passwort mit den bestehenden
+        Längen- und Sicherheitseinstellungen und bewertet es neu.
+        """
         self.password = Password.__passwordgen.generate_password(self.base_length, self.safety)
         Password.__evaluator.evaluate(self)
 
@@ -71,7 +95,16 @@ class Password:
 
     @staticmethod
     def create_password(pwd):
-        """macht aus einem user-input ein fertiges Password obj"""
+        """
+        Erstellt aus einem vom Benutzer eingegebenen Passwort
+        ein vollständiges Password-Objekt inklusive Sicherheitsbewertung.
+
+        Die Sicherheitsstufe wird anhand der enthaltenen Zeichentypen
+        (Buchstaben, Ziffern, Sonderzeichen) ermittelt.
+
+        :param pwd: Vom Benutzer eingegebenes Passwort
+        :return: Password-Objekt
+        """
         safety = 0
         base_length = len(pwd)
         if any(c in string.ascii_letters for c in pwd):
