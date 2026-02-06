@@ -1,8 +1,8 @@
 from passwordgen import *
 
 
-password = Password(4000000,3)
-print(password.get_password()+ "status: "+ password.get_status())
+password = Password(10,2)
+print("Password: "+password.get_password()+ " status: "+ password.get_status())
 
 #pwd = input("Gib dein Passwort ein: ")
 #password = Password.create_password(pwd)

@@ -29,7 +29,7 @@ class PasswordGen:
             all_chars = chars_letters + chars_digits
             password_chars = [secrets.choice(chars_letters), secrets.choice(chars_digits)]
             for i in range(base_length-2):
-                password_chars.append([secrets.choice(all_chars)])
+                password_chars +=[secrets.choice(all_chars)]
             secrets.SystemRandom().shuffle(password_chars)
         elif safety == 3 and base_length >= 3:
             chars_letters = string.ascii_letters
